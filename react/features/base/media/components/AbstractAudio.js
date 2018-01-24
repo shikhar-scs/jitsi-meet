@@ -8,7 +8,8 @@ import { Component } from 'react';
  */
 export type AudioElement = {
     play: Function,
-    pause: Function
+    pause: Function,
+    setSinkId: ?Function
 }
 
 /**
@@ -81,6 +82,19 @@ export default class AbstractAudio extends Component<Props> {
      */
     play() {
         this._audioElementImpl && this._audioElementImpl.play();
+    }
+
+    /**
+     * Sets the sink ID (output device ID) on the underlying audio element.
+     * NOTE: Currently implemented only on web.
+     *
+     * @param {string} sinkId - The sink ID (output device ID).
+     * @returns {void}
+     */
+    setSinkId(sinkId: String) {
+        this._audioElementImpl
+            && typeof this._audioElementImpl.setSinkId === 'function'
+            && this._audioElementImpl.setSinkId(sinkId);
     }
 
     /**
