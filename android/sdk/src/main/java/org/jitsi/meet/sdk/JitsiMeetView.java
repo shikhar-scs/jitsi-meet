@@ -113,6 +113,7 @@ public class JitsiMeetView extends FrameLayout {
                 .addPackage(new com.oblador.vectoricons.VectorIconsPackage())
                 .addPackage(new com.ocetnik.timer.BackgroundTimerPackage())
                 .addPackage(new com.oney.WebRTCModule.WebRTCModulePackage())
+                .addPackage(new com.calendarevents.CalendarEventsPackage())
                 .addPackage(new com.RNFetchBlob.RNFetchBlobPackage())
                 .addPackage(new com.rnimmersive.RNImmersivePackage())
                 .addPackage(new ReactPackageAdapter() {

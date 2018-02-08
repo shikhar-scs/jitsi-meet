@@ -21,12 +21,12 @@ import {
     createDesiredLocalTracks,
     destroyLocalTracks
 } from '../../base/tracks';
-import { RecentList } from '../../recent-list';
 import { SettingsView } from '../../settings';
 
 import { AbstractWelcomePage, _mapStateToProps } from './AbstractWelcomePage';
 import { setSideBarVisible } from '../actions';
 import LocalVideoTrackUnderlay from './LocalVideoTrackUnderlay';
+import PagedList from './PagedList';
 import styles, {
     PLACEHOLDER_TEXT_COLOR,
     SWITCH_THUMB_COLOR,
@@ -114,26 +114,29 @@ class WelcomePage extends AbstractWelcomePage {
                         </View>
                     </Header>
                     <SafeAreaView style = { styles.roomContainer } >
-                        <TextInput
-                            accessibilityLabel = { 'Input room name.' }
-                            autoCapitalize = 'none'
-                            autoComplete = { false }
-                            autoCorrect = { false }
-                            autoFocus = { false }
-                            onBlur = { this._onFieldFocusChange(false) }
-                            onChangeText = { this._onRoomChange }
-                            onFocus = { this._onFieldFocusChange(true) }
-                            onSubmitEditing = { this._onJoin }
-                            placeholder = { t('welcomepage.roomname') }
-                            placeholderTextColor = { PLACEHOLDER_TEXT_COLOR }
-                            returnKeyType = { 'go' }
-                            style = { styles.textInput }
-                            underlineColorAndroid = 'transparent'
-                            value = { this.state.room } />
-                        {
-                            this._renderHintBox()
-                        }
-                        <RecentList enabled = { !this.state._fieldFocused } />
+                        <View style = { PlatformElements.paddedView } >
+                            <TextInput
+                                accessibilityLabel = { 'Input room name.' }
+                                autoCapitalize = 'none'
+                                autoComplete = { false }
+                                autoCorrect = { false }
+                                autoFocus = { false }
+                                onBlur = { this._onFieldFocusChange(false) }
+                                onChangeText = { this._onRoomChange }
+                                onFocus = { this._onFieldFocusChange(true) }
+                                onSubmitEditing = { this._onJoin }
+                                placeholder = { t('welcomepage.roomname') }
+                                placeholderTextColor = { PLACEHOLDER_TEXT_COLOR
+                                }
+                                returnKeyType = { 'go' }
+                                style = { styles.textInput }
+                                underlineColorAndroid = 'transparent'
+                                value = { this.state.room } />
+                            {
+                                this._renderHintBox()
+                            }
+                        </View>
+                        <PagedList enabled = { !this.state._fieldFocused } />
                     </SafeAreaView>
                     <SettingsView />
                 </View>

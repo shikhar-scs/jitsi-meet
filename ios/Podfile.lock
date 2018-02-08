@@ -3,6 +3,8 @@ PODS:
     - React/Core (= 0.51.0)
   - react-native-background-timer (2.0.0):
     - React
+  - react-native-calendar-events (1.4.3):
+    - React
   - react-native-fetch-blob (0.10.6):
     - React/Core
   - react-native-keep-awake (2.0.6):
@@ -47,6 +49,7 @@ PODS:
 
 DEPENDENCIES:
   - react-native-background-timer (from `../node_modules/react-native-background-timer`)
+  - react-native-calendar-events (from `../node_modules/react-native-calendar-events`)
   - react-native-fetch-blob (from `../node_modules/react-native-fetch-blob`)
   - react-native-keep-awake (from `../node_modules/react-native-keep-awake`)
   - react-native-locale-detector (from `../node_modules/react-native-locale-detector`)
@@ -69,6 +72,8 @@ EXTERNAL SOURCES:
     :path: ../node_modules/react-native
   react-native-background-timer:
     :path: ../node_modules/react-native-background-timer
+  react-native-calendar-events:
+    :path: ../node_modules/react-native-calendar-events
   react-native-fetch-blob:
     :path: ../node_modules/react-native-fetch-blob
   react-native-keep-awake:
@@ -85,6 +90,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   React: 541ba768b9855e10cdc76f55427a5cd0653ca806
   react-native-background-timer: 63dcbf37dbcf294b5c6c071afcdc661fa06a7594
+  react-native-calendar-events: fe6fbc8ed337a7423c98f2c9012b25f20444de09
   react-native-fetch-blob: 63394b1d7b0781547b3e4463b3195790177b1222
   react-native-keep-awake: 0de4bd66de0c23178107dce0c2fcc3354b2a8e94
   react-native-locale-detector: d1b2c6fe5abb56e3a1efb6c2d6f308c05c4251f1
@@ -92,6 +98,6 @@ SPEC CHECKSUMS:
   RNVectorIcons: c0dbfbf6068fefa240c37b0f71bd03b45dddac44
   yoga: 17521bbb0dd54a47c0b3ac43253e78cdac7488e0
 
-PODFILE CHECKSUM: fabd6b6c27f8e1849f0668db3f403bf536ac8903
+PODFILE CHECKSUM: b28a703986cd3eb3ed701ec85d1ad9bcdcc6d6f9
 
 COCOAPODS: 1.4.0
