@@ -6,6 +6,8 @@ const AVATAR_SIZE = 65;
 
 const OVERLAY_FONT_COLOR = 'rgba(255, 255, 255, 0.6)';
 
+export const NOTIFICATION_SIZE = 55;
+
 export const UNDERLAY_COLOR = 'rgba(255, 255, 255, 0.2)';
 
 /**
@@ -48,6 +50,45 @@ export default createStyleSheet({
         fontSize: 32,
         fontWeight: '100',
         textAlign: 'center'
+    },
+
+    notificationContainer: {
+        alignSelf: 'flex-start',
+        backgroundColor: '#eeb231',
+        borderBottomRightRadius: NOTIFICATION_SIZE,
+        borderTopRightRadius: NOTIFICATION_SIZE,
+        flexDirection: 'row',
+        height: NOTIFICATION_SIZE,
+        justifyContent: 'center',
+        paddingHorizontal: 10,
+        position: 'relative'
+    },
+
+    notificationContainerPast: {
+        backgroundColor: 'red'
+    },
+
+    notificationIcon: {
+        color: 'white',
+        fontSize: 25
+    },
+
+    notificationIconContainer: {
+        alignItems: 'center',
+        flexDirection: 'row',
+        height: NOTIFICATION_SIZE,
+        justifyContent: 'center'
+    },
+
+    notificationText: {
+        color: 'white',
+        fontSize: 13
+    },
+
+    notificationTextContainer: {
+        flexDirection: 'column',
+        height: NOTIFICATION_SIZE,
+        justifyContent: 'center'
     },
 
     /**
@@ -105,5 +146,9 @@ export default createStyleSheet({
         color: OVERLAY_FONT_COLOR,
         fontSize: 14,
         fontWeight: 'normal'
+    },
+
+    touchableView: {
+        flexDirection: 'row'
     }
 });

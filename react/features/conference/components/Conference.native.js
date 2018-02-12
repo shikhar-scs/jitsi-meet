@@ -12,6 +12,7 @@ import { DialogContainer } from '../../base/dialog';
 import { CalleeInfoContainer } from '../../base/jwt';
 import { Container, LoadingIndicator, TintedView } from '../../base/react';
 import { createDesiredLocalTracks } from '../../base/tracks';
+import { ConferenceNotification } from '../../calendar-sync';
 import { Filmstrip } from '../../filmstrip';
 import { LargeVideo } from '../../large-video';
 import { setToolboxVisible, Toolbox } from '../../toolbox';
@@ -200,6 +201,8 @@ class Conference extends Component<Props> {
                   * The LargeVideo is the lowermost stacking layer.
                   */}
                 <LargeVideo />
+
+                <ConferenceNotification />
 
                 {/*
                   * If there is a ringing call, show the callee's info.
