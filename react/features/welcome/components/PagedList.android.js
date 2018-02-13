@@ -35,7 +35,11 @@ export default class PagedList extends AbstractPagedList {
         const { disabled } = this.props;
 
         return (
-            <View style = { styles.pagedListContainer }>
+            <View
+                style = { [
+                    styles.pagedListContainer,
+                    disabled ? styles.pagedListContainerDisabled : null
+                ] }>
                 <ViewPagerAndroid
                     initialPage = { DEFAULT_PAGE }
                     keyboardDismissMode = 'on-drag'
