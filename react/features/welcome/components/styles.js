@@ -197,6 +197,13 @@ export default createStyleSheet({
     },
 
     /**
+     * An empty padded view to place components.
+     */
+    paddedView: {
+        padding: BoxModel.padding
+    },
+
+    /**
      * Container for room name input box and 'join' button.
      */
     roomContainer: {

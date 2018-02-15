@@ -4,13 +4,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { appNavigate } from '../../app';
-import { translate } from '../../base/i18n';
-import { NavigateSectionList } from '../../base/react';
 import {
     getLocalizedDateFormatter,
     getLocalizedDurationFormatter,
-    parseURIString
-} from '../../base/util';
+    translate
+} from '../../base/i18n';
+import { NavigateSectionList } from '../../base/react';
+import { parseURIString } from '../../base/util';
 
 /**
  * The type of the React {@code Component} props of {@link RecentList}
@@ -235,7 +235,7 @@ class RecentList extends Component<Props> {
 export function _mapStateToProps(state: Object) {
     return {
         _homeServer: state['features/app'].app._getDefaultURL(),
-        _recentList: state['features/recent-list'].list
+        _recentList: state['features/recent-list']
     };
 }
 

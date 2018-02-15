@@ -2,13 +2,11 @@
 
 import moment from 'moment';
 
-import { i18next } from '../i18n';
+import i18next from './i18next';
 
 // MomentJS uses static language bundle loading, so in order to support dynamic
 // language selection in the app we need to load all bundles that we support in
 // the app.
-// FIXME: If we decide to support MomentJS in other features as well we may need
-// to move this import and the lenient matcher to the i18n feature.
 require('moment/locale/bg');
 require('moment/locale/de');
 require('moment/locale/eo');

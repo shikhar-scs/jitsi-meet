@@ -114,7 +114,7 @@ class WelcomePage extends AbstractWelcomePage {
                         </View>
                     </Header>
                     <SafeAreaView style = { styles.roomContainer } >
-                        <View style = { PlatformElements.paddedView } >
+                        <View style = { styles.paddedView } >
                             <TextInput
                                 accessibilityLabel = { 'Input room name.' }
                                 autoCapitalize = 'none'

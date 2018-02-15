@@ -10,9 +10,8 @@ import { connect } from 'react-redux';
 
 import { appNavigate } from '../../app';
 import { getURLWithoutParams } from '../../base/connection';
-import { translate } from '../../base/i18n';
+import { getLocalizedDateFormatter, translate } from '../../base/i18n';
 import { Icon } from '../../base/font-icons';
-import { getLocalizedDateFormatter } from '../../base/util';
 
 import styles from './styles';
 
