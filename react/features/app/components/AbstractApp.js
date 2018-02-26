@@ -15,6 +15,7 @@ import {
 import { getProfile } from '../../base/profile';
 import { Fragment, RouteRegistry } from '../../base/react';
 import { MiddlewareRegistry, ReducerRegistry } from '../../base/redux';
+import { SoundsCollection } from '../../base/sounds';
 import { PersistenceRegistry } from '../../base/storage';
 import { toURLString } from '../../base/util';
 import { OverlayContainer } from '../../overlay';
@@ -274,6 +275,7 @@ export class AbstractApp extends Component {
                     <Provider store = { this._getStore() }>
                         <Fragment>
                             { this._createElement(component) }
+                            <SoundsCollection />
                             <OverlayContainer />
                         </Fragment>
                     </Provider>
