@@ -7,9 +7,9 @@ import { Component } from 'react';
  * playback.
  */
 export type AudioElement = {
-    play: Function,
-    pause: Function,
-    setSinkId: ?Function
+    +play: Function,
+    +pause: Function,
+    +setSinkId?: string => void
 }
 
 /**
@@ -21,7 +21,7 @@ type Props = {
      * A callback which will be called with {@code AbstractAudio} instance once
      * the audio element is loaded.
      */
-    setRef: ?Function,
+    setRef?: ?AudioElement => void,
 
     /**
      * The URL of a media resource to use in the element.
@@ -49,7 +49,7 @@ export default class AbstractAudio extends Component<Props> {
     /**
      * {@link setAudioElementImpl} bound to <code>this</code>.
      */
-    setAudioElementImpl: Function;
+    setAudioElementImpl: ?AudioElement => void;
 
     /**
      * Initializes a new {@code AbstractAudio} instance.
@@ -70,7 +70,7 @@ export default class AbstractAudio extends Component<Props> {
      * @public
      * @returns {void}
      */
-    pause() {
+    pause(): void {
         this._audioElementImpl && this._audioElementImpl.pause();
     }
 
@@ -80,7 +80,7 @@ export default class AbstractAudio extends Component<Props> {
      * @public
      * @returns {void}
      */
-    play() {
+    play(): void {
         this._audioElementImpl && this._audioElementImpl.play();
     }
 
@@ -91,7 +91,7 @@ export default class AbstractAudio extends Component<Props> {
      * @param {string} sinkId - The sink ID (output device ID).
      * @returns {void}
      */
-    setSinkId(sinkId: String) {
+    setSinkId(sinkId: string): void {
         this._audioElementImpl
             && typeof this._audioElementImpl.setSinkId === 'function'
             && this._audioElementImpl.setSinkId(sinkId);
@@ -106,7 +106,7 @@ export default class AbstractAudio extends Component<Props> {
      * @protected
      * @returns {void}
      */
-    setAudioElementImpl(element: ?AudioElement) {
+    setAudioElementImpl(element: ?AudioElement): void {
         this._audioElementImpl = element;
 
         if (typeof this.props.setRef === 'function') {
