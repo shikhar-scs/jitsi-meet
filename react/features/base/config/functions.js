@@ -176,7 +176,7 @@ export function obtainConfig(
  * @returns {void}
  */
 export function overrideConfigJSON(
-        config: Object, interfaceConfig: Object, loggingConfig: Object,
+        config: ?Object, interfaceConfig: ?Object, loggingConfig: ?Object,
         json: Object) {
     for (const configName of Object.keys(json)) {
         let configObj;
@@ -229,40 +229,48 @@ function _getWhitelistedJSON(configName, configJSON) {
     return _.pick(configJSON, WHITELISTED_KEYS);
 }
 
-/* eslint-enable max-params, no-shadow */
-
 /**
- * Converts 'URL_PARAMS' to JSON object.
- * We have:
- * {
- *      "config.disableAudioLevels": false,
- *      "config.channelLastN": -1,
- *      "interfaceConfig.APP_NAME": "Jitsi Meet"
- * }.
- * We want to have:
- * {
- *      "config": {
- *          "disableAudioLevels": false,
- *          "channelLastN": -1
- *      },
- *      interfaceConfig: {
- *          "APP_NAME": "Jitsi Meet"
- *      }
- * }.
+ * This will inspect the hash part of the location URI and override values
+ * specified there in the corresponding config objects given as the arguments.
+ * The syntax is as follows:
  *
+ * https://server.com/room#config.debug=true&interfaceConfig.showButton=false
+ * &loggingConfig.something=1
+ *
+ * In the hash part each parameter will be parsed to JSON and then the root
+ * object will be matched with the corresponding config object given as
+ * the argument to this function.
+ *
+ * @param {Object} config - This is the general config.
+ * @param {Object} interfaceConfig - This is the interface config.
+ * @param {Object} loggingConfig - The logging config.
+ * @param {URI} location - The new location to which the app is navigating to.
  * @returns {void}
  */
-export function setConfigFromURLParams() {
-    const params = parseURLParams(window.location);
-
-    const { config, interfaceConfig, loggingConfig } = window;
+export function setConfigFromURLParams(
+        config: ?Object,
+        interfaceConfig: ?Object,
+        loggingConfig: ?Object,
+        location: Object) {
+    const params = parseURLParams(location);
     const json = {};
 
-    // TODO We're still in the middle ground between old Web with config,
-    // interfaceConfig, and loggingConfig used via global variables and new Web
-    // and mobile reading the respective values from the redux store. On React
-    // Native there's no interfaceConfig at all yet and loggingConfig is not
-    // loaded but there's a default value in the redux store.
+    // At this point we have:
+    // params = {
+    //     "config.disableAudioLevels": false,
+    //     "config.channelLastN": -1,
+    //     "interfaceConfig.APP_NAME": "Jitsi Meet"
+    // }
+    // We want to have:
+    // json = {
+    //     config: {
+    //         "disableAudioLevels": false,
+    //         "channelLastN": -1
+    //     },
+    //     interfaceConfig: {
+    //         "APP_NAME": "Jitsi Meet"
+    //     }
+    // }
     config && (json.config = {});
     interfaceConfig && (json.interfaceConfig = {});
     loggingConfig && (json.loggingConfig = {});
@@ -281,3 +289,5 @@ export function setConfigFromURLParams() {
 
     overrideConfigJSON(config, interfaceConfig, loggingConfig, json);
 }
+
+/* eslint-enable max-params, no-shadow */

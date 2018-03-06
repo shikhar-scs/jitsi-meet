@@ -1,6 +1,5 @@
 // @flow
 
-import { setConfigFromURLParams } from '../config';
 import { toState } from '../redux';
 import { loadScript } from '../util';
 
@@ -144,15 +143,6 @@ export function loadConfig(
         // React Native app was even conceived.
         promise = Promise.resolve(window.config);
     }
-
-    // FIXME It's neither here nor there at the time of this writing where
-    // config, interfaceConfig, and loggingConfig should be overwritten by URL
-    // params.
-    promise = promise.then(value => {
-        setConfigFromURLParams();
-
-        return value;
-    });
 
     return promise;
 }

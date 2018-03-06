@@ -1,7 +1,12 @@
 /* @flow */
 
 import { setRoom } from '../base/conference';
-import { configWillLoad, loadConfigError, setConfig } from '../base/config';
+import {
+    configWillLoad,
+    loadConfigError,
+    setConfig,
+    setConfigFromURLParams
+} from '../base/config';
 import { setLocationURL } from '../base/connection';
 import { loadConfig } from '../base/lib-jitsi-meet';
 import { getProfile } from '../base/profile';
@@ -69,6 +74,28 @@ function _appNavigateToMandatoryLocation(
         // FIXME Due to the asynchronous nature of the loading, the specified
         // config may or may not be required by the time the notification
         // arrives.
+
+        // Now that the loading of the config was successful override the values
+        // with the parameters passed in the hash part of the location URI.
+        // TODO We're still in the middle ground between old Web with config,
+        // interfaceConfig, and loggingConfig used via global variables and new
+        // Web and mobile reading the respective values from the redux store.
+        // On React Native there's no interfaceConfig at all yet and
+        // loggingConfig is not loaded but there's a default value in the redux
+        // store.
+        // Only the config will be overridden on React Native, as the other
+        // globals will be undefined here. It's intentional - we do not care
+        // to override those configs yet.
+        if (config && !error) {
+            setConfigFromURLParams(
+
+                // On Web the config also comes from the window.config global,
+                // but it is resolved in the load config procedure.
+                config,
+                window && window.interfaceConfig,
+                window && window.loggingConfig,
+                newLocation);
+        }
 
         const promise
             = dispatch(setLocationURL(new URL(newLocation.toString())));
