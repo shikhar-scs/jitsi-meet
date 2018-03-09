@@ -61,8 +61,21 @@ ReducerRegistry.register(
                 error: action.error
             };
 
-        case SET_CONFIG:
-            return _setConfig(state, action);
+        case SET_CONFIG: {
+            const newConfig = _setConfig(state, action);
+
+            // FIXME On web we rely on the global 'config' variable which gets
+            // altered multiple times, before it makes it to the reducer. At
+            // some point it may not be the global variable which is being
+            // modified anymore due to different merge methods being used
+            // across the way. The global variable must be synchronized with
+            // the final state resolved by the reducer.
+            if (typeof window !== 'undefined' && window.config) {
+                window.config = newConfig;
+            }
+
+            return newConfig;
+        }
 
         default:
             return state;
