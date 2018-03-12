@@ -64,6 +64,8 @@ ReducerRegistry.register(
         case SET_CONFIG: {
             const newConfig = _setConfig(state, action);
 
+            declare var config: Object;
+
             // FIXME On web we rely on the global 'config' variable which gets
             // altered multiple times, before it makes it to the reducer. At
             // some point it may not be the global variable which is being
@@ -72,9 +74,15 @@ ReducerRegistry.register(
             // the final state resolved by the reducer.
             if (typeof window !== 'undefined' && window.config) {
                 window.config = newConfig;
+                console.info('CONFIG GLOBAL UPDATED');
             }
 
-            console.info('SET CONFIG REDUCED');
+            // $FlowExpectedError
+            console.info(`SET CONFIG REDUCED: ${config.p2p.enabled} `);
+            console.info(`WINDOW: ${window.config.p2p.enabled}`);
+
+            // $FlowExpectedError
+            console.info(`NEW CONFIG: ${newConfig.p2p.enabled}`);
 
             return newConfig;
         }
