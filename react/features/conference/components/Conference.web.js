@@ -17,6 +17,7 @@ import { HideNotificationBarStyle } from '../../unsupported-browser';
 import { maybeShowSuboptimalExperienceNotification } from '../functions';
 
 declare var APP: Object;
+declare var config: Object;
 declare var interfaceConfig: Object;
 
 /**
@@ -75,6 +76,8 @@ class Conference extends Component<Props> {
         APP.UI.bindEvents();
 
         const { dispatch, t } = this.props;
+
+        console.info(`CONFERENCE DID MOUNT: ${config.p2p.enabled}`);
 
         dispatch(connect());
         maybeShowSuboptimalExperienceNotification(dispatch, t);

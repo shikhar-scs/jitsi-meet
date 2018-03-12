@@ -13,7 +13,7 @@
         var defaultConsole = console;
         function argsToJSON(args) {
             var msg = '';
-            for (var idx = 1; idx < args.length; idx += 1) {
+            for (var idx = 0; idx < args.length; idx += 1) {
                 const arg = args[idx];
 
                 if (typeof arg === 'object') {

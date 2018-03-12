@@ -31,6 +31,8 @@ export function connect() {
         // XXX Lib-jitsi-meet does not accept uppercase letters.
         const room = state['features/base/conference'].room.toLowerCase();
 
+        console.info(`WEB INIT LIB-JITSI-MEET: ${config.p2p.enabled}`);
+
         // XXX For web based version we use conference initialization logic
         // from the old app (at the moment of writing).
         return APP.conference.init({ roomName: room })

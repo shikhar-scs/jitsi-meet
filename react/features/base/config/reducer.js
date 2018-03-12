@@ -74,6 +74,8 @@ ReducerRegistry.register(
                 window.config = newConfig;
             }
 
+            console.info('SET CONFIG REDUCED');
+
             return newConfig;
         }
 

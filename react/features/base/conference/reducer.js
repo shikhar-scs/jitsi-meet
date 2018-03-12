@@ -400,6 +400,8 @@ function _setRoom(state, action) {
         room = undefined;
     }
 
+    console.info(`SET ROOM REDUCED: ${room ? room : 'undefined'}`);
+
     /**
      * The name of the room of the conference (to be) joined.
      *
