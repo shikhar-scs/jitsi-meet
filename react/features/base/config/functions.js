@@ -288,6 +288,9 @@ export function setConfigFromURLParams(
     }
 
     overrideConfigJSON(config, interfaceConfig, loggingConfig, json);
+
+    // $FlowExpectedError
+    console.info(`AFTER CFG OVERRIDE ${config.p2p.enabled}, JSON: ${json}`);
 }
 
 /* eslint-enable max-params, no-shadow */
