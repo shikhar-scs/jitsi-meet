@@ -84,6 +84,9 @@ export function setConfig(config: Object = {}) {
             window && window.loggingConfig,
             locationURL);
 
+        // $FlowExpectedError
+        console.info(`DISPATCHING ${config.p2p.enabled}`);
+
         dispatch({
             type: SET_CONFIG,
             config

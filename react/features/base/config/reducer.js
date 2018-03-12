@@ -62,6 +62,9 @@ ReducerRegistry.register(
             };
 
         case SET_CONFIG: {
+            // $FlowExpectedError
+            console.info(`TO BE REDUCED ${action.config.p2p.enabled}`);
+
             const newConfig = _setConfig(state, action);
 
             declare var config: Object;
