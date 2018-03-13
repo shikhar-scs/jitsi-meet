@@ -129,8 +129,12 @@ function _setConfig(state, { config }) {
     // of this writing and, consequently, we must provide legacy support in the
     // meantime.
 
+    console.info(`before translate legacy ${config.p2p.enabled}`);
+
     // eslint-disable-next-line no-param-reassign
     config = _translateLegacyConfig(config);
+
+    console.info(`after translate legacy ${config.p2p.enabled}`);
 
     const newState = _.merge(
         {},
@@ -143,7 +147,14 @@ function _setConfig(state, { config }) {
         _getInitialState()
     );
 
-    return equals(state, newState) ? state : newState;
+    console.info(`after merge ${newState.p2p.enabled}`);
+
+    const result = equals(state, newState) ? state : newState;
+
+    // $FlowExpectedError
+    console.info(`result ${result.p2p.enabled}`);
+
+    return result;
 }
 
 /**
