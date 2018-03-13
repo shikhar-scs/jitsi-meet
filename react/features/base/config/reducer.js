@@ -130,6 +130,7 @@ function _setConfig(state, { config }) {
     // meantime.
 
     console.info(`before translate legacy ${config.p2p.enabled}`);
+    console.info(`before translate legacy full ${JSON.stringify(config)}`);
 
     // eslint-disable-next-line no-param-reassign
     config = _translateLegacyConfig(config);
@@ -179,6 +180,7 @@ function _translateLegacyConfig(oldValue: Object) {
     // At the time of this writing lib-jitsi-meet will rely on config having a
     // property with the name p2p and with a value of type Object.
     if (typeof oldValue.p2p !== 'object') {
+        console.info('old value p2p is not an object');
         newValue = set(newValue, 'p2p', {});
     }
 
@@ -195,6 +197,9 @@ function _translateLegacyConfig(oldValue: Object) {
     /* eslint-enable indent */
 
         if (oldKey in newValue) {
+
+            console.info(`${oldKey} in newValue`);
+
             const v = newValue[oldKey];
 
             // Do not modify oldValue.
@@ -203,6 +208,9 @@ function _translateLegacyConfig(oldValue: Object) {
                     ...newValue
                 };
             }
+
+            console.info(`Delete ${oldKey}`);
+
             delete newValue[oldKey];
 
             // Do not modify p2p because it may be from oldValue i.e. do not
@@ -211,6 +219,8 @@ function _translateLegacyConfig(oldValue: Object) {
                 ...newValue.p2p,
                 [newKey]: v
             };
+
+            console.info(`New value p2p ${JSON.stringify(newValue.p2p)}`);
         }
     }
 
